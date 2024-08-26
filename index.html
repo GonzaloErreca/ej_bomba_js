@@ -7,33 +7,38 @@
 </head>
 <body>
   <div>
-    <h1 style="color: blue; font-size: 15px;">Hola Mundo</h1>
+    <h1 style="color: blue; font-size: 15px;">Prueba de Explosion</h1>
     <img id="bomba" src="pic/bomb640.png" width="100"/>
   </div>
   
   <script>
     var aumentar = 100;
     const imgBomba = document.getElementById("bomba");
-    var explosion = 500; 
+    const explosion = 500; // Tamaño al que la bomba explota
+    var exploto = false;
 
     document.addEventListener('keydown', function(e) {
-      switch (e.keyCode) {
-        case 37: // Flecha izquierda
-        break;
-          if (aumentar > explosion) {
-            imgBomba.src ="pic/explosion.png";
-          }
-          imgBomba.style.width = aumentar + "px";
-          break;
-        case 38: // Flecha arriba
-          imgBomba.style.width = "300px";
-          break;
-        case 39: // Flecha derecha
-          // Puedes agregar alguna acción aquí
-          break;
-        case 40: // Flecha abajo
-          imgBomba.style.width = "200px";
-          break;
+      if (!exploto) {
+        switch (e.keyCode) {
+          case 38: // Flecha arriba
+            aumentar += 100;
+            break;
+          case 40: // Flecha abajo
+            aumentar -= 100;
+            break;
+        }
+
+        // cambiamos el tamaño de la bomba
+        
+        imgBomba.style.width = aumentar + "px";
+
+        // chequea si explota o no
+        if (aumentar >= explosion) {
+          imgBomba.src = "pic/explosion.png"; // pic explota
+          imgBomba.style.width = "500px"; 
+          imgBomba.style.height = "auto"; 
+          exploto = true; // Flaguear qeu la bomba exploto apra que no funcione mas el listener keydown
+        }
       }
     });
   </script>
