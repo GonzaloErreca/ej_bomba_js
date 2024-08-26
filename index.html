@@ -27,9 +27,13 @@
             aumentar -= 100;
             break;
         }
-
-        // cambiamos el tamaño de la bomba
         
+        //nos aseguramos que la bomba no decrezca hasta desaparecer
+        
+        if (aumentar<50){
+            aumentar = 100;
+        }
+        // cambiamos el tamaño de la bomba
         imgBomba.style.width = aumentar + "px";
 
         // chequea si explota o no
